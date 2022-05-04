@@ -1,0 +1,29 @@
+﻿@using MVCDataAssignment.Models;
+
+@model CreatePersonViewModel;
+@{
+    ViewData["Title"] = "People - Add new person";
+}
+<h1>Add new person</h1>
+
+<form asp-action="Create" method="post">
+    <label asp-for="FirstName"></label>
+    <input asp-for="FirstName" />
+    <span asp-validation-for="FirstName"></span>
+
+    <label asp-for="LastName"></label>
+    <input asp-for="LastName" />
+    <span asp-validation-for="LastName"></span>
+
+    <label asp-for="PhoneNumber"></label>
+    <input asp-for="PhoneNumber"/>
+    <span asp-validation-for="PhoneNumber"></span>
+
+    <label asp-for="CityName"></label>
+    <input asp-for="CityName"/>
+    <span asp-validation-for="CityName"></span>
+
+    <button type="submit" class="btn btn-outline-dark">Create person</button>
+
+    
+</form>

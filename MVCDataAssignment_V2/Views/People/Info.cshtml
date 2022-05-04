@@ -1,0 +1,27 @@
+﻿@using MVCDataAssignment.Models;
+
+@model Person
+@{
+    ViewData["Title"] = "person - Info";
+}
+
+<div class= "container"
+<table>
+    <thead>
+        <partial name="ConstantHeaderPartialViewTwo"/>
+        
+    </thead>
+    <tbody>
+        
+            <div class= "row">
+                <div class= "col-sm">@Model.Id</div>
+                <div class= "col-sm">@Model.FirstName  </div>
+                <div class= "col-sm">@Model.LastName  </div>
+                <div class= "col-sm">@Model.CityName  </div>
+                <div class= "col-sm">@Model.PhoneNumber</div>
+                <div class= "col-sm "></div>
+            </div>
+        
+    </tbody>
+</table>
+</div>

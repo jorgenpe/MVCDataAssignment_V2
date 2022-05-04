@@ -1,0 +1,76 @@
+﻿@using MVCDataAssignment.Models;
+
+@model List<Person>
+@{
+    ViewData["Title"] = "People - Index";
+}
+
+
+<h1>People</h1>
+
+<div class="container">
+    <div class= "row">
+        <div class= "col-sm">
+            <a class="btn btn-outline-dark" asp-area="" asp-controller="People" asp-action="Create"  >Create person</a>
+            
+        </div>
+       
+        <div class= "col-sm">  </div>
+        
+        <div class= "col-sm">
+            <form asp-action="Search" method="post">
+                <input type="text"  value="" name="textin"/>
+                <button type="submit" class="btn btn-outline-secondary">Search </button>
+            </form>
+        </div>
+        
+    </div>
+
+
+
+<table>
+    
+    <thead>
+        
+         
+            <div class= "row">
+                <div class= "col-sm">Id</div>
+                <div class= "col-sm">First name  </div>
+                <div class= "col-sm">Last name  </div>
+                <div class= "col-sm">City name  </div>
+                <div class= "col-sm">  </div>
+                <div class= "col-sm"></div>
+            </div>
+        
+    </thead>
+    <tbody>
+        @foreach (Person person in Model)
+        {
+            
+                <div class= "row">
+                    <div class= "col-sm">@person.Id</div>
+                    <div class= "col-sm">@person.FirstName  </div>
+                    <div class= "col-sm">@person.LastName  </div>
+                    <div class= "col-sm">@person.CityName  </div>
+                
+                    <div class= "col-sm">  
+                        <form asp-action="Info" method="post">
+                            <input type="hidden"  value="@person.Id" name="id"/>
+                            <button type="submit" class="btn btn-outline-info"  >Person info </button>
+                        </form> 
+                    </div>
+
+                    <div class= "col-sm">
+                        <form asp-action="DeletePerson" method="post">
+                            <input type="hidden"  value="@person.Id" name="id"/>
+                            <button type="submit" class= "btn btn-outline-danger">Delete </button>
+                        </form>                  
+                    </div>
+                </div>
+            
+        }
+
+    </tbody>
+       
+</table>
+</div>
