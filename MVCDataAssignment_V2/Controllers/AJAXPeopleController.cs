@@ -59,7 +59,7 @@ namespace MVCDataAssignment_V2.Controllers
 
                 return PartialView("_PeoplesListThree", listPerson);
             }
-            return View();
+            return PartialView("_FailedDelete");
         }
 
     }
