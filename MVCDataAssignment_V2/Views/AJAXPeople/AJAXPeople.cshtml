@@ -1,0 +1,31 @@
+﻿@using MVCDataAssignment.Models;
+@model List<Person>
+<div class="container">
+    
+        <div class= "row">
+            <div class= "col-sm">
+                <a class="btn btn-outline-dark" asp-area="" asp-controller="People" asp-action="Create"  >Create person</a>
+            
+            </div>
+       
+            <div class= "col-sm">  </div>
+        
+            <div class= "col-sm">
+                <form asp-controller="People" asp-action="Search" method="post">
+                    <input type="text"  value="" name="textin"/>
+                    <button type="submit" class="btn btn-outline-secondary">Search </button>
+                </form>
+            </div>
+        
+        </div>
+        
+                    <button onclick="getPeoples('@Url.Action("GetPeoples", "AJAXPeople")')" class="btn btn-outline-secondary">Get People</button>
+            
+                    <input name="Info" type="number" value="" id="inputId"/>
+                    <button onclick="infoById('@Url.Action("InfoById", "AJAXPeople")','inputId')" class="btn btn-outline-info">Infomation by id</button>
+                
+                    <input name="deleteId" type="number" id="inputDeleteId"/>
+                    <button onclick="deleteById('@Url.Action("Delete", "AJAXPeople")','inputDeleteId')" class= "btn btn-outline-danger">Delete by id</button>
+              
+    <div id="PeoplesList"></div>
+</div>
