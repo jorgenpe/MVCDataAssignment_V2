@@ -2,30 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MVCDataAssignment_V2.Models;
 
-namespace MVCDataAssignment.Models
+namespace MVCDataAssignment_V2.Models
 {
     public class PeopleService : IPeopleService
     {
 
-        InMemoryPeopleRepo peopleRepo = new InMemoryPeopleRepo();    
+        private readonly IPeopleRepo _peopleRepo;    
 
-        public PeopleService()
+        public PeopleService(IPeopleRepo peopleRepo)
         {
-
+            this._peopleRepo = peopleRepo;
         }
 
         public Person Add(CreatePersonViewModel person) 
         { 
             Person newPerson = new Person() { Id = 0, FirstName = person.FirstName, LastName = person.LastName, PhoneNumber = person.PhoneNumber, CityName = person.CityName};
-            peopleRepo.Create(newPerson);
+            _peopleRepo.Create(newPerson);
             return newPerson; 
         }
         
         public List<Person> All() { 
-            if(peopleRepo != null)
+            if(_peopleRepo != null)
             {
-                return peopleRepo.Read();
+                return _peopleRepo.Read();
 
             }
             return null;    
@@ -34,7 +35,7 @@ namespace MVCDataAssignment.Models
         public List<Person> Search(string search){
 
             List<Person> returnPeople = new List<Person>();
-            foreach (Person person in peopleRepo.Read())
+            foreach (Person person in _peopleRepo.Read())
             {
                 if (person.FirstName == search)
                 {
@@ -56,7 +57,7 @@ namespace MVCDataAssignment.Models
 
         public Person FindById(int id) 
         { 
-            return peopleRepo.Read(id);
+            return _peopleRepo.Read(id);
         }
 
         public bool Edit(int id, CreatePersonViewModel person) 
@@ -70,12 +71,12 @@ namespace MVCDataAssignment.Models
             personInList.PhoneNumber = person.PhoneNumber;
             personInList.CityName = person.CityName;
 
-            return peopleRepo.Update(personInList); 
+            return _peopleRepo.Update(personInList); 
         }
 
         public bool Remove(int id) 
         { 
-            return peopleRepo.Delete(FindById(id)); 
+            return _peopleRepo.Delete(FindById(id)); 
         }
     }
 }

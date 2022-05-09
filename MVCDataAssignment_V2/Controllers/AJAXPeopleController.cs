@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MVCDataAssignment.Models;
+using MVCDataAssignment_V2.Models;
+
 
 namespace MVCDataAssignment_V2.Controllers
 {
     public class AJAXPeopleController : Controller
     {
 
-        IPeopleService _peopleService;
+        private readonly IPeopleService _peopleService;
 
-        public AJAXPeopleController()
+        public AJAXPeopleController(IPeopleService peopleService)
         {
-            _peopleService = new PeopleService();
+            this._peopleService = peopleService;
         }
 
         public IActionResult Index()

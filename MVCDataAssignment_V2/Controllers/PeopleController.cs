@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MVCDataAssignment.Models;
-namespace MVCDataAssignment.Controllers
+using MVCDataAssignment_V2.Models;
+namespace MVCDataAssignment_V2.Controllers
 {
     public class PeopleController : Controller
     {
-        IPeopleService _peopleService;
+       private readonly IPeopleService _peopleService;
 
-        public PeopleController()
+        public PeopleController(IPeopleService peopleService)
         {
-            _peopleService = new PeopleService();
+            this._peopleService = peopleService;
         }
 
         [HttpGet]

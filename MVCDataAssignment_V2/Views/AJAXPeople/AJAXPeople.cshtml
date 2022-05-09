@@ -1,4 +1,4 @@
-﻿@using MVCDataAssignment.Models;
+﻿
 @model List<Person>
 <div class="container">
     
@@ -21,8 +21,8 @@
         
                     <button onclick="getPeoples('@Url.Action("GetPeoples", "AJAXPeople")')" class="btn btn-outline-secondary">Get People</button>
             
-                    <input name="Info" type="number" value="" id="inputId"/>
-                    <button onclick="infoById('@Url.Action("InfoById", "AJAXPeople")','inputId')" class="btn btn-outline-info">Infomation by id</button>
+                    <input name="Info" type="number"  id="inputId" onfocus="this.value=''" />
+                    <button onclick="infoById('@Url.Action("InfoById", "AJAXPeople")','inputId')"  class="btn btn-outline-info">Infomation by id</button>
                 
                     <input name="deleteId" type="number" id="inputDeleteId"/>
                     <button onclick="deleteById('@Url.Action("Delete", "AJAXPeople")','inputDeleteId')" class= "btn btn-outline-danger">Delete by id</button>

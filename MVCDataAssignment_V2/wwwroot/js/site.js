@@ -5,7 +5,7 @@
 
 
 function getPeoples(url) {
-    console.log("hej");
+   
     $.get(url, function (response) {
         console.log(response);
         document.getElementById("PeoplesList").innerHTML = response;
@@ -29,7 +29,7 @@ function infoById(url, inputId) {
 
 
 function deleteById(url, inputDeleteId) {
-    console.log("hej");
+   
     let inputElement = $("#" + inputDeleteId);
 
     var data = {
@@ -39,6 +39,7 @@ function deleteById(url, inputDeleteId) {
     $.post(url, data, function (response) {
         console.log(response);
         document.getElementById("PeoplesList").innerHTML = response;
+        
     })
 
 };

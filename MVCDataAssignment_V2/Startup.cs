@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MVCDataAssignment_V2.Models;
+//using MVCDataAssignment.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace MVCDataAssignment_V2
 {
@@ -23,8 +26,17 @@ namespace MVCDataAssignment_V2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews();
+            //services.AddScoped<IPeopleRepo, InMemoryPeopleRepo>();
+            services.AddScoped<IPeopleRepo, InMemoryPeopleRepo>();
+            services.AddScoped<IPeopleService, PeopleService>();
+
+            
 
             services.AddDistributedMemoryCache();
+
+            //services.AddDbContext<LibraryDbContext>(options =>
+            //options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddSession(options =>
             {
@@ -35,7 +47,7 @@ namespace MVCDataAssignment_V2
 
             services.AddMvc();
 
-            //services.AddControllersWithViews(); //Will be used later maybe
+            // //Will be used later maybe
             services.AddMvc().AddRazorRuntimeCompilation();
             services.AddRazorPages();
         }
