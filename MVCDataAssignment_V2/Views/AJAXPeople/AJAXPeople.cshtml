@@ -12,7 +12,7 @@
         
             <div class= "col-sm">
                 <form asp-controller="People" asp-action="Search" method="post">
-                    <input type="text"  value="" name="textin"/>
+                    <input type="text"  value="" name="textin" onfocus="this.value=''"/>
                     <button type="submit" class="btn btn-outline-secondary">Search </button>
                 </form>
             </div>
@@ -21,10 +21,10 @@
         
                     <button onclick="getPeoples('@Url.Action("GetPeoples", "AJAXPeople")')" class="btn btn-outline-secondary">Get People</button>
             
-                    <input name="Info" type="number"  id="inputId" onfocus="this.value=''" />
+                    <input name="Info" type="number"  id="inputId" onfocus="this.value=''" min="1"/>
                     <button onclick="infoById('@Url.Action("InfoById", "AJAXPeople")','inputId')"  class="btn btn-outline-info">Infomation by id</button>
                 
-                    <input name="deleteId" type="number" id="inputDeleteId"/>
+                    <input name="deleteId" type="number" id="inputDeleteId" onfocus="this.value=''" min="1"/>
                     <button onclick="deleteById('@Url.Action("Delete", "AJAXPeople")','inputDeleteId')" class= "btn btn-outline-danger">Delete by id</button>
               
     <div id="PeoplesList"></div>

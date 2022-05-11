@@ -8,19 +8,19 @@
 
 <form asp-action="Create" method="post">
     <label asp-for="FirstName"></label>
-    <input asp-for="FirstName" />
+    <input asp-for="FirstName" onfocus="this.value=''" />
     <span asp-validation-for="FirstName"></span>
 
     <label asp-for="LastName"></label>
-    <input asp-for="LastName" />
+    <input asp-for="LastName" onfocus="this.value=''"/>
     <span asp-validation-for="LastName"></span>
 
     <label asp-for="PhoneNumber"></label>
-    <input asp-for="PhoneNumber"/>
+    <input asp-for="PhoneNumber"onfocus="this.value=''"/>
     <span asp-validation-for="PhoneNumber"></span>
 
     <label asp-for="CityName"></label>
-    <input asp-for="CityName"/>
+    <input asp-for="CityName" onfocus="this.value=''" />
     <span asp-validation-for="CityName"></span>
 
     <button type="submit" class="btn btn-outline-dark">Create person</button>

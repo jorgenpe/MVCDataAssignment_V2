@@ -34,7 +34,7 @@ namespace MVCDataAssignment_V2.Controllers
         [HttpPost]
         public IActionResult Create(CreatePersonViewModel createPerson)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && createPerson !=null)
             {
                 _peopleService.Add(createPerson);
 
@@ -67,7 +67,7 @@ namespace MVCDataAssignment_V2.Controllers
         [HttpPost]
         public IActionResult Info(int id)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid )
             {
                 
                 return View(_peopleService.FindById(id));
@@ -80,7 +80,7 @@ namespace MVCDataAssignment_V2.Controllers
         public IActionResult Search(string textin)
         {
            
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && _peopleService.Search(textin) != null)
             {
                 
                 return View(_peopleService.Search(textin));
