@@ -9,34 +9,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MVCDataAssignment_V2.Models;
-//using MVCDataAssignment.Models;
+using MVCDataAssignment_V2.Data;
+using MVCDataAssignment_V2.Models.Repo;
 using Microsoft.EntityFrameworkCore;
 
 namespace MVCDataAssignment_V2
 {
     public class Startup
     {
+        private readonly IConfiguration Configuration;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        //public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+            services.AddDbContext<PeopleDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddControllersWithViews();
+
+            services.AddScoped<IPeopleRepo, DbPeopleRepo>();
             //services.AddScoped<IPeopleRepo, InMemoryPeopleRepo>();
-            services.AddScoped<IPeopleRepo, InMemoryPeopleRepo>();
             services.AddScoped<IPeopleService, PeopleService>();
 
             
 
             services.AddDistributedMemoryCache();
 
-            //services.AddDbContext<LibraryDbContext>(options =>
-            //options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            
 
             services.AddSession(options =>
             {
