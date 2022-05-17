@@ -21,8 +21,6 @@ namespace MVCDataAssignment_V2.Models
         [StringLength(127)]
         public string PhoneNumber { get; set; }
 
-        [Required]
-        [StringLength(255)]
-        public string CityName { get; set; }
+        public City CityName { get; set; }
     }
 }

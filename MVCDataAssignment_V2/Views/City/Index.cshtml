@@ -1,0 +1,18 @@
+﻿
+@model CreateCityViewModel;
+@{
+    ViewData["Title"] = "City - Add new city";
+}
+<h1>Add new city</h1>
+
+<form asp-action="Create" method="post">
+    
+
+    <label asp-for="CityName"></label>
+    <input asp-for="CityName" onfocus="this.value=''" />
+    <span asp-validation-for="CityName"></span>
+
+    <button type="submit" class="btn btn-outline-dark">Create city</button>
+
+    
+</form>

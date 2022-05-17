@@ -18,7 +18,7 @@ namespace MVCDataAssignment_V2.Models
 
         public Person Add(CreatePersonViewModel person) 
         { 
-            Person newPerson = new Person() { Id = 0, FirstName = person.FirstName, LastName = person.LastName, PhoneNumber = person.PhoneNumber, CityName = person.CityName};
+            Person newPerson = new Person() { Id = 0, FirstName = person.FirstName, LastName = person.LastName, PhoneNumber = person.PhoneNumber};
             _peopleRepo.Create(newPerson);
             return newPerson; 
         }
@@ -46,9 +46,6 @@ namespace MVCDataAssignment_V2.Models
                 }else if(person.PhoneNumber == search)
                 {
                     returnPeople.Add(person);
-                }else if(person.CityName == search) 
-                { 
-                    returnPeople.Add(person); 
                 }
 
             }
@@ -69,7 +66,7 @@ namespace MVCDataAssignment_V2.Models
             personInList.FirstName = person.FirstName;
             personInList.LastName = person.LastName;
             personInList.PhoneNumber = person.PhoneNumber;
-            personInList.CityName = person.CityName;
+            
 
             return _peopleRepo.Update(personInList); 
         }

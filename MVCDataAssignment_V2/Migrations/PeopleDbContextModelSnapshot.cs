@@ -18,15 +18,38 @@ namespace MVCDataAssignment_V2.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MVCDataAssignment_V2.Models.Person", b =>
+            modelBuilder.Entity("MVCDataAssignment_V2.Models.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CityName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Citys");
+                });
+
+            modelBuilder.Entity("MVCDataAssignment_V2.Models.Country", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CityName")
+                    b.Property<string>("CountryName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countrys");
+                });
+
+            modelBuilder.Entity("MVCDataAssignment_V2.Models.Person", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -40,6 +63,24 @@ namespace MVCDataAssignment_V2.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("People");
+                });
+
+            modelBuilder.Entity("MVCDataAssignment_V2.Models.City", b =>
+                {
+                    b.HasOne("MVCDataAssignment_V2.Models.Country", "Country")
+                        .WithMany("CountryCitys")
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MVCDataAssignment_V2.Models.Person", b =>
+                {
+                    b.HasOne("MVCDataAssignment_V2.Models.City", "CityName")
+                        .WithMany("people")
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

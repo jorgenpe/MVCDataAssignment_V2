@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using MVCDataAssignment_V2.Models;
 using MVCDataAssignment_V2.Data;
 using MVCDataAssignment_V2.Models.Repo;
+using MVCDataAssignment_V2.Models.Service;
 using Microsoft.EntityFrameworkCore;
 
 namespace MVCDataAssignment_V2
@@ -38,8 +39,10 @@ namespace MVCDataAssignment_V2
             services.AddScoped<IPeopleRepo, DbPeopleRepo>();
             //services.AddScoped<IPeopleRepo, InMemoryPeopleRepo>();
             services.AddScoped<IPeopleService, PeopleService>();
-
-            
+            services.AddScoped<ICountryService, CountryService>();
+            services.AddScoped<ICityService, CityService>();
+            services.AddScoped<ICitysRepo, DbCitysRepo>();
+            services.AddScoped<ICountryRepo, DbCountryRepo>();
 
             services.AddDistributedMemoryCache();
 
