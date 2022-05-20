@@ -69,11 +69,21 @@ namespace MVCDataAssignment_V2.Models
             {
                 if (person.FirstName == search)
                 {
-                     returnPeople.Add(person);
-                }else if(person.LastName == search)
-                { 
-                    returnPeople.Add(person); 
-                }else if(person.PhoneNumber == search)
+                    returnPeople.Add(person);
+                }
+                else if (person.LastName == search)
+                {
+                    returnPeople.Add(person);
+                }
+                else if (person.PhoneNumber == search)
+                {
+                    returnPeople.Add(person);
+                }
+                else if(person.CityName.CityName == search)
+                {
+                    returnPeople.Add(person);
+                } 
+                else if (person.CityName.CountryName.CountryName == search)
                 {
                     returnPeople.Add(person);
                 }
