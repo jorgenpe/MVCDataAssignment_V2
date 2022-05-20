@@ -2,27 +2,41 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MVCDataAssignment_V2.Models;
+using MVCDataAssignment_V2.Models.ViewModels;
 
 namespace MVCDataAssignment_V2.Models
 {
     public class PeopleService : IPeopleService
     {
 
-        private readonly IPeopleRepo _peopleRepo;    
+        private readonly IPeopleRepo _peopleRepo;
+        private readonly ICityService _cityService;
+        private readonly ICountryService _countryService;
 
-        public PeopleService(IPeopleRepo peopleRepo)
+        
+
+        public PeopleService(IPeopleRepo peopleRepo, ICityService cityService, ICountryService countryService)
         {
             this._peopleRepo = peopleRepo;
+            _cityService = cityService;
+            _countryService = countryService;   
         }
 
         public Person Add(CreatePersonViewModel person) 
         { 
-            Person newPerson = new Person() { Id = 0, FirstName = person.FirstName, LastName = person.LastName, PhoneNumber = person.PhoneNumber};
+            
+            CreateCityViewModel city = new CreateCityViewModel() { CityName = person.NameCity
+                , CountryId = person.CountryId, CountryName = _countryService.FindById(person.CountryId) , CountrysList = person.CountrysList
+            };
+            City newCity =_cityService.Add(city);
+
+            Person newPerson = new Person() { Id = 0, FirstName = person.FirstName, LastName = person.LastName, PhoneNumber = person.PhoneNumber,
+                            CityName = newCity, CityId = newCity.Id};
+
             _peopleRepo.Create(newPerson);
-            return newPerson; 
-        }
+            return newPerson;         }
         
+
         public List<Person> All() { 
             if(_peopleRepo != null)
             {

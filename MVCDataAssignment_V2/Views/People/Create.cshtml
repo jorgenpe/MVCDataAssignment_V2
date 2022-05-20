@@ -1,9 +1,8 @@
 ﻿
 
 @model CreatePersonViewModel;
-@{
-    ViewData["Title"] = "People - Add new person";
-}
+
+
 <h1>Add new person</h1>
 
 <form asp-action="Create" method="post">
@@ -19,9 +18,41 @@
     <input asp-for="PhoneNumber"onfocus="this.value=''"/>
     <span asp-validation-for="PhoneNumber"></span>
 
+
+
+    
+
+    <label asp-for="CityName"></label>
+    <input asp-for="NameCity"  />
+    <span asp-validation-for="NameCity"></span>
+
+    <label asp-for="CountryName"></label>
+    
+    <select asp-items="@(new SelectList(Model.CountrysList,"Id",  "CountryName"))" asp-for="CountryId">
+       
+    </select>
+    <span asp-validation-for="CountryId"></span>
+
     
 
     <button type="submit" class="btn btn-outline-dark">Create person</button>
 
     
 </form>
+
+<datalist id="cityList">
+    @foreach (City city in Model.Cities)
+    {
+
+        <option value= " @city.CityName">@city.CityName </option>
+        
+    }
+</datalist>
+
+<datalist id="countrysList">
+    @foreach (Country country in Model.CountrysList)
+    {
+        <option value="@country.CountryName">@country.CountryName</option>
+        
+    }
+</datalist>

@@ -11,16 +11,23 @@ namespace MVCDataAssignment_V2.Controllers
     public class CityController : Controller
     {
         private readonly ICityService _cityService;
+        private readonly ICountryService _countryService;
 
-        public CityController(ICityService cityService)
+        public CityController(ICityService cityService, ICountryService countryService)
         {
-            this._cityService = cityService;
+            _cityService = cityService;
+            _countryService = countryService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            CreateCityViewModel createCity = new CreateCityViewModel();
+
+            createCity.CountrysList = _countryService.All();
+            return View(createCity);
         }
+
+        
 
 
         public IActionResult City()
@@ -38,12 +45,16 @@ namespace MVCDataAssignment_V2.Controllers
         {
             CreateCityViewModel createCity = new CreateCityViewModel();
 
+            createCity.CountrysList = _countryService.All();
+
             return View(createCity);
         }
 
         [HttpPost]
         public IActionResult Create(CreateCityViewModel createCity)
         {
+            
+
             if (ModelState.IsValid && createCity != null)
             {
                 _cityService.Add(createCity);
@@ -51,7 +62,11 @@ namespace MVCDataAssignment_V2.Controllers
                 return RedirectToAction("Index");
             }
 
+            createCity.CountrysList = _countryService.All();
+
+            
             return View(createCity);
+
         }
 
 

@@ -5,17 +5,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MVCDataAssignment_V2.Models;
 
-
 namespace MVCDataAssignment_V2.Controllers
 {
     public class AJAXPeopleController : Controller
     {
-
+        
         private readonly IPeopleService _peopleService;
+        private readonly ICityService _cityService;
 
-        public AJAXPeopleController(IPeopleService peopleService)
+        public AJAXPeopleController(IPeopleService peopleService, ICityService cityService)
         {
             this._peopleService = peopleService;
+            _cityService = cityService;
         }
 
         public IActionResult Index()

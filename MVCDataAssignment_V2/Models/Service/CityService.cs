@@ -10,19 +10,25 @@ namespace MVCDataAssignment_V2.Models
     public class CityService : ICityService
     {
         private readonly ICitysRepo _citysRepo;
+        private readonly ICountryService _countryService;
 
-        public CityService(ICitysRepo citysRepo)
+        Country country = new Country();
+
+        public CityService(ICitysRepo citysRepo,ICountryService countryService )
         {
             this._citysRepo = citysRepo;
+            _countryService = countryService;
         }
 
-        public City Add(CreateCityViewModel city)
+        public City Add(CreateCityViewModel CreateCity)
         {
-            City newCity = new City() { Id = 0, CityName = city.CityName };
+            City newCity = new City() { Id = 0, CityName = CreateCity.CityName, 
+                CountryName = _countryService.FindById(CreateCity.CountryId), CountryId = CreateCity.CountryId };
+            //_countryService.FindById(city.CountryId)
 
-            _citysRepo.Create(newCity);
+            City createCity =_citysRepo.Create(newCity);
 
-            return newCity;
+            return _citysRepo.Read(createCity.Id);
         }
 
         public List<City> All()

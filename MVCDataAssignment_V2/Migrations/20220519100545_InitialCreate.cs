@@ -23,39 +23,53 @@ namespace MVCDataAssignment_V2.Migrations
                 name: "Citys",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
-                    CityName = table.Column<string>(nullable: true)
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CityName = table.Column<string>(nullable: true),
+                    CountryId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Citys", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Citys_Countrys_Id",
-                        column: x => x.Id,
+                        name: "FK_Citys_Countrys_CountryId",
+                        column: x => x.CountryId,
                         principalTable: "Countrys",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "People",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true)
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    CityId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_People", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_People_Citys_Id",
-                        column: x => x.Id,
+                        name: "FK_People_Citys_CityId",
+                        column: x => x.CityId,
                         principalTable: "Citys",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Citys_CountryId",
+                table: "Citys",
+                column: "CountryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_People_CityId",
+                table: "People",
+                column: "CityId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

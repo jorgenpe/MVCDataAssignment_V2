@@ -25,14 +25,14 @@ namespace MVCDataAssignment_V2.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Person>()
-                .HasOne(ab => ab.CityName)
+                .HasOne(a => a.CityName)
                 .WithMany(b => b.people)
-                .HasForeignKey(ba => ba.Id);
+                .HasForeignKey(a => a.CityId);
 
             modelBuilder.Entity<City>()
-                .HasOne(ab => ab.Country)
+                .HasOne(a => a.CountryName)
                 .WithMany(b => b.CountryCitys)
-                .HasForeignKey(ba => ba.Id);
+                .HasForeignKey(a => a.CountryId);
         }
     }
 }

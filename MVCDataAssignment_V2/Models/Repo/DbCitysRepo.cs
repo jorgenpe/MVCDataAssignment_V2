@@ -17,6 +17,7 @@ namespace MVCDataAssignment_V2.Models.Repo
 
         public City Create(City city)
         {
+           
             _peopleDbContext.Add(city);
             _peopleDbContext.SaveChanges();
 

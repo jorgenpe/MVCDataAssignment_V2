@@ -21,6 +21,16 @@ namespace MVCDataAssignment_V2.Models
         [StringLength(127)]
         public string PhoneNumber { get; set; }
 
+        [Required]
+        public int CityId { get; set; }
         public City CityName { get; set; }
+        public string NameCity { get; set; }
+
+        [Required]
+        public int CountryId { get; set; }
+        public Country CountryName { get; set; }
+
+        public List<City> Cities { get; set; }
+        public List<Country> CountrysList { get; set; }
     }
 }

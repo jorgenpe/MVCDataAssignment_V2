@@ -14,8 +14,10 @@ namespace MVCDataAssignment_V2.Models.ViewModels
         [StringLength(255)]
         public string CityName { get; set; }
 
-        [StringLength(255)]
-        public Country Country { get; set; }
-        public List<Person> people { get; set; }
+        [Required]
+        public int CountryId { get; set; }
+        public Country CountryName { get; set; }
+
+        public List<Country> CountrysList { get; set; }
     }
 }

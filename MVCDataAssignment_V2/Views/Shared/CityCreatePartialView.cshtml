@@ -1,11 +1,7 @@
-﻿
-@model CreateCityViewModel;
-@{
-    ViewData["Title"] = "City - Add new city";
-}
+﻿@model CreateCityViewModel;
+
 <h1>Add new city</h1>
 
-<form asp-action="Create" method="post">
     
 
     <label asp-for="CityName"></label>
@@ -24,10 +20,6 @@
 
         
 
-    <button type="submit" class="btn btn-outline-dark">Create city</button>
-
-    
-</form>
 
 <datalist id="countrysList">
     @foreach (Country country in Model.CountrysList)
@@ -36,5 +28,3 @@
         
     }
 </datalist>
-    
-

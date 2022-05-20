@@ -8,11 +8,15 @@ namespace MVCDataAssignment_V2.Controllers
 {
     public class PeopleController : Controller
     {
-       private readonly IPeopleService _peopleService;
+        private readonly IPeopleService _peopleService;
+        private readonly ICityService _cityService;
+        private readonly ICountryService _countryService;
 
-        public PeopleController(IPeopleService peopleService)
+        public PeopleController(IPeopleService peopleService, ICityService cityService, ICountryService countryService)
         {
             this._peopleService = peopleService;
+            _cityService = cityService;
+            _countryService = countryService;
         }
 
         [HttpGet]
@@ -27,6 +31,8 @@ namespace MVCDataAssignment_V2.Controllers
         public IActionResult Create()
         {
             CreatePersonViewModel createPerson = new CreatePersonViewModel();
+            createPerson.Cities = _cityService.All();
+            createPerson.CountrysList = _countryService.All();
 
             return View(createPerson);
         }
@@ -40,6 +46,8 @@ namespace MVCDataAssignment_V2.Controllers
 
                 return RedirectToAction("Index");
             }
+            createPerson.CountrysList = _countryService.All();
+            createPerson.Cities = _cityService.All();
 
             return View(createPerson);
         }
