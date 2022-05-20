@@ -18,6 +18,7 @@ namespace MVCDataAssignment_V2.Models.ViewModels
         public int CountryId { get; set; }
         public Country CountryName { get; set; }
 
+        public List<Person> people { get; set; }
         public List<Country> CountrysList { get; set; }
     }
 }

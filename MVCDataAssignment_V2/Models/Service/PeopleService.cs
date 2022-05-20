@@ -23,8 +23,24 @@ namespace MVCDataAssignment_V2.Models
         }
 
         public Person Add(CreatePersonViewModel person) 
-        { 
-            
+        {
+            if (string.IsNullOrWhiteSpace(person.FirstName))
+
+            {
+                throw new ArgumentException("Name,PhoneNumber or City, not be consist of backspace(s)/whitespace(s)");
+            }
+            else if(string.IsNullOrWhiteSpace(person.LastName))
+            {
+                {
+                    throw new ArgumentException("Name,PhoneNumber or City, not be consist of backspace(s)/whitespace(s)");
+                }
+            }
+
+
+
+
+
+
             CreateCityViewModel city = new CreateCityViewModel() { CityName = person.NameCity
                 , CountryId = person.CountryId, CountryName = _countryService.FindById(person.CountryId) , CountrysList = person.CountrysList
             };

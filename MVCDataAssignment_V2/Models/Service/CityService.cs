@@ -22,6 +22,12 @@ namespace MVCDataAssignment_V2.Models
 
         public City Add(CreateCityViewModel CreateCity)
         {
+            if (string.IsNullOrWhiteSpace(CreateCity.CityName))
+
+            {
+                throw new ArgumentException("Name,PhoneNumber or City, not be consist of backspace(s)/whitespace(s)");
+            }
+
             City newCity = new City() { Id = 0, CityName = CreateCity.CityName, 
                 CountryName = _countryService.FindById(CreateCity.CountryId), CountryId = CreateCity.CountryId };
             //_countryService.FindById(city.CountryId)

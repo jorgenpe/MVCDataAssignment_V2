@@ -3,9 +3,11 @@
 
     <div class= "row">
                     <div class= "col-sm">@Model.Id</div>
-                    <div class= "col-sm">@Model.FirstName  </div>
+                    <div class= "col-sm">@Model.FirstName </div>
                     <div class= "col-sm">@Model.LastName  </div>
-                    <div class= "col-sm">@Model.CityName  </div>
+                    <div class= "col-sm">@Model.CityName.CityName  </div>
+                    <div class= "col-sm">@Model.CityName.CountryName.CountryName</div>
+                    
                 
                     <div class= "col-sm">  
                         <form asp-action="Info" method="post">

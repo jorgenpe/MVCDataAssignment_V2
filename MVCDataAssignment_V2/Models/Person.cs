@@ -20,18 +20,3 @@ namespace MVCDataAssignment_V2.Models
         public City   CityName { get; set; }     
     }
 }
-/*<label asp-for="CityName"></label>
-
-
-       < input asp -for= "CityName" list = "cityList" />
-  
-
-      < span asp - validation -for= "CountryId" ></ span >
-      
-
-          < select asp - items = "@(new SelectList(Model.Countrys,"Id",  "CountryName"))" asp -for= "CountryId" >
-            
-
-                </ select >
-            
-                < span asp - validation -for= "CountryId" ></ span >*/

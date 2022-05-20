@@ -19,6 +19,7 @@ namespace MVCDataAssignment_V2.Models
         [ForeignKey("Country")]
         public int? CountryId { get; set; }  
         public Country CountryName { get; set; }
+
         public List<Person> people { get; set; }
     }
 }

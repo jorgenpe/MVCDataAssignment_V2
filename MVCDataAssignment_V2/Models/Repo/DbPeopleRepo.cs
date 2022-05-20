@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MVCDataAssignment_V2.Data;
+using Microsoft.EntityFrameworkCore;
 namespace MVCDataAssignment_V2.Models.Repo
 {
     public class DbPeopleRepo : IPeopleRepo
@@ -36,7 +37,10 @@ namespace MVCDataAssignment_V2.Models.Repo
 
         public List<Person> Read()
         {
+                       
             return _peopleDbContext.People
+                .Include(b => b.CityName)
+                .ThenInclude(a => a.CountryName)
                 .ToList();
         }
 
@@ -44,6 +48,8 @@ namespace MVCDataAssignment_V2.Models.Repo
         {
 
             return _peopleDbContext.People
+                .Include(b => b.CityName)
+                .ThenInclude(a => a.CountryName)
                 .SingleOrDefault(p => p.Id == id);
 
         }
