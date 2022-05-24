@@ -54,6 +54,21 @@ namespace MVCDataAssignment_V2.Migrations
                     b.ToTable("Countrys");
                 });
 
+            modelBuilder.Entity("MVCDataAssignment_V2.Models.Language", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("LanguageName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Languages");
+                });
+
             modelBuilder.Entity("MVCDataAssignment_V2.Models.Person", b =>
                 {
                     b.Property<int>("Id")
@@ -80,6 +95,21 @@ namespace MVCDataAssignment_V2.Migrations
                     b.ToTable("People");
                 });
 
+            modelBuilder.Entity("MVCDataAssignment_V2.Models.PersonLanguage", b =>
+                {
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LanguageId", "PersonId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("PersonLanguages");
+                });
+
             modelBuilder.Entity("MVCDataAssignment_V2.Models.City", b =>
                 {
                     b.HasOne("MVCDataAssignment_V2.Models.Country", "CountryName")
@@ -92,6 +122,21 @@ namespace MVCDataAssignment_V2.Migrations
                     b.HasOne("MVCDataAssignment_V2.Models.City", "CityName")
                         .WithMany("people")
                         .HasForeignKey("CityId");
+                });
+
+            modelBuilder.Entity("MVCDataAssignment_V2.Models.PersonLanguage", b =>
+                {
+                    b.HasOne("MVCDataAssignment_V2.Models.Person", "Person")
+                        .WithMany("PersonLanguages")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MVCDataAssignment_V2.Models.Language", "Language")
+                        .WithMany("PersonLanguages")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

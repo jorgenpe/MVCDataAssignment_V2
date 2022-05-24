@@ -24,9 +24,9 @@ namespace MVCDataAssignment_V2.Models.Repo
             return city;
         }
 
-        public bool Delete(City country)
+        public bool Delete(City city)
         {
-            _peopleDbContext.Remove(country);
+            _peopleDbContext.Remove(city);
 
             int change = _peopleDbContext.SaveChanges();
 

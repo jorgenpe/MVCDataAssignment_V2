@@ -17,6 +17,11 @@ namespace MVCDataAssignment_V2.Models
 
         [ForeignKey("City")]
         public int? CityId { get; set; }
-        public City   CityName { get; set; }     
+        public City   CityName { get; set; }
+
+        //[Required]
+        //public int LanguageId { get; set; } 
+
+        public List<PersonLanguage> PersonLanguages { get; set; }
     }
 }

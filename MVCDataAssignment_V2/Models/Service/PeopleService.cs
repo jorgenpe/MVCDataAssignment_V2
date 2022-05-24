@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MVCDataAssignment_V2.Models.ViewModels;
+using MVCDataAssignment_V2.Models.Repo;
 
 namespace MVCDataAssignment_V2.Models
 {
@@ -12,6 +13,7 @@ namespace MVCDataAssignment_V2.Models
         private readonly IPeopleRepo _peopleRepo;
         private readonly ICityService _cityService;
         private readonly ICountryService _countryService;
+        private readonly IPersonLanguageRepo personLanguageRepo;
 
         
 
@@ -36,21 +38,20 @@ namespace MVCDataAssignment_V2.Models
                 }
             }
 
-
-
-
-
-
             CreateCityViewModel city = new CreateCityViewModel() { CityName = person.NameCity
                 , CountryId = person.CountryId, CountryName = _countryService.FindById(person.CountryId) , CountrysList = person.CountrysList
             };
             City newCity =_cityService.Add(city);
 
+            
+
             Person newPerson = new Person() { Id = 0, FirstName = person.FirstName, LastName = person.LastName, PhoneNumber = person.PhoneNumber,
                             CityName = newCity, CityId = newCity.Id};
 
-            _peopleRepo.Create(newPerson);
-            return newPerson;         }
+            Person createdPerson = _peopleRepo.Create(newPerson);
+
+            PersonLanguage personLanguage = new PersonLanguage() { PersonId = createdPerson.Id, LanguageId = person.LanguageId };
+            return _peopleRepo.Read(createdPerson.Id);         }
         
 
         public List<Person> All() { 
