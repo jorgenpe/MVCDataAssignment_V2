@@ -15,7 +15,7 @@
             
         </div>
        
-        <div class= "col-sm">  </div>
+        <div class= "col-sm"></div>
         
         <div class= "col-sm">
             <form asp-action="Search" method="post">
@@ -23,10 +23,40 @@
                 <button type="submit"  class="btn btn-outline-secondary" >Search </button>
             </form>
         </div>
+       
         
     </div>
+    
+        <form asp-controller="Language" asp-action="create" method="post">
+                <div class= "row">
+                   
+                    <div class= "col-sm">
+                        <button type="submit"  class="btn btn-outline-dark"  >Add language </button>
+                    </div>                 
+
+                    <div class= "col-sm">
+                        
+                            
+                                <label>By person id: </label>
+                       </div>     
+
+                            <div class= "col-sm">
+                                <input type="number"   name="textin" min= "1" id="PersonId" value="PersonId" required />
+                                
+                           </div> 
+                            <div>
+                                <input type="hidden" asp-controller = "Language" asp-action="GetIndex" id="languages" value = "languages"/>
+                            </div>
+                   
 
 
+                    
+                    <div class= "col-sm"></div>
+                    <div class= "col-sm"></div>
+
+                </div>
+        </form>
+    
 
 <table>
     

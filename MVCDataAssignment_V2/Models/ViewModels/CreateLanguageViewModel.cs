@@ -19,6 +19,7 @@ namespace MVCDataAssignment_V2.Models.ViewModels
 
         public int? PersonId { get; set;}
 
+        
         public List<Person> people { get; set;}
         public List<Language> languages { get; set; }
     }

@@ -18,6 +18,27 @@
             </div>
         
         </div>
+
+        <form asp-controller="Language" asp-action="create" method="post">
+                <div class= "row">
+                   
+                    <div class= "col-sm">
+                        <button type="submit"  class="btn btn-outline-dark" >Add language </button>
+                    </div>                 
+
+                    <div class= "col-sm">
+                        
+                       <label>By person id: </label>
+                    </div>     
+
+                            <div class= "col-sm">
+                                <input type="number"   name="textin" min= "1" required />
+                       </div>
+                    <div class= "col-sm"></div>
+                    <div class= "col-sm"></div>
+
+                </div>
+        </form>
         
                     <button onclick="getPeoples('@Url.Action("GetPeoples", "AJAXPeople")')" class="btn btn-outline-secondary">Get People</button>
             

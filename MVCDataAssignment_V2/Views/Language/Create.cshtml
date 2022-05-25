@@ -1,0 +1,43 @@
+﻿@model CreateLanguageViewModel;
+
+
+
+
+
+<form asp-controller="PersonLanguage" asp-action="Create" method="post">
+    
+
+    <label asp-for="PersonId"></label>
+    <input asp-for="PersonId" type = "hidden" value="PersonId"  />
+    <span asp-validation-for="PersonId"></span>
+
+   
+
+
+     <label asp-for="LanguageName"></label>
+    
+
+
+   <select asp-items="@(new SelectList(Model.languages,"Id",  "LanguageName"))" asp-for="Id">
+       
+    </select>
+    <span asp-validation-for="LanguageName"></span>
+
+
+
+
+        
+
+    <button type="submit" class="btn btn-outline-dark">Create city</button>
+
+    
+</form>
+
+<datalist id="languages">
+    @foreach (Language language in Model.languages)
+    {
+        <option value="@language.LanguageName">@language.LanguageName</option>
+        
+    }
+</datalist>
+

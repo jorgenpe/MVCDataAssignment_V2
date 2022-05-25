@@ -26,9 +26,19 @@ namespace MVCDataAssignment_V2.Controllers
             return View(language);
         }
 
+        public IActionResult GetIndex()
+        {
+             
+            return View(_langauageService.All());
+        }
+
+
+        [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            CreateLanguageViewModel language = new CreateLanguageViewModel();
+            language.languages = _langauageService.All();
+            return View(language);
         }
 
         [HttpPost]

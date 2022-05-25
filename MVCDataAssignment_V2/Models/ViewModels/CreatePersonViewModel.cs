@@ -33,6 +33,8 @@ namespace MVCDataAssignment_V2.Models
         [Required]
         public int LanguageId { get; set; }
 
+        
+        public List<Language> Languages { get; set; }
         public List<City> Cities { get; set; }
         public List<Country> CountrysList { get; set; }
     }
