@@ -1,5 +1,17 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model CreateLanguageViewModel;
 @{
+    ViewData["Title"] = "Languge - Add new language";
 }
+<h1>Add new language</h1>
+
+<form asp-action="Create" method="post">
+    
+
+    <label asp-for="LanguageName"></label>
+    <input asp-for="LanguageName" onfocus="this.value=''" />
+    <span asp-validation-for="LanguageName"></span>
+
+    <button type="submit" class="btn btn-outline-dark">Add language</button>
+
+    
+</form>

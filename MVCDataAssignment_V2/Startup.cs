@@ -43,6 +43,8 @@ namespace MVCDataAssignment_V2
             services.AddScoped<ICityService, CityService>();
             services.AddScoped<ICitysRepo, DbCitysRepo>();
             services.AddScoped<ICountryRepo, DbCountryRepo>();
+            services.AddScoped<ILanguageRepo, DbLanguageRepo>();
+            services.AddScoped<ILanguageService, LanguageService>();
 
             services.AddDistributedMemoryCache();
 

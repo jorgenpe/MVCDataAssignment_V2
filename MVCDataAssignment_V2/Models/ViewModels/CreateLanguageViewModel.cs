@@ -10,11 +10,16 @@ namespace MVCDataAssignment_V2.Models.ViewModels
 {
     public class CreateLanguageViewModel
     {
+        
         public int Id { get; set;}
         [Required]
         [StringLength(512)]
         public string LanguageName { get; set;}
 
+
         public int? PersonId { get; set;}
+
+        public List<Person> people { get; set;}
+        public List<Language> languages { get; set; }
     }
 }
