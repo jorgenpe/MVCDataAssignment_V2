@@ -8,9 +8,9 @@ namespace MVCDataAssignment_V2.Models.Service
 {
     public class PersonLanguageService : IPersonLanguageService
     {
-        private readonly DbPersonLanguageRepo _dbPersonLanguageRepo;
+        private readonly IPersonLanguageRepo _dbPersonLanguageRepo;
 
-        public PersonLanguageService(DbPersonLanguageRepo dbPersonLanguageRepo)
+        public PersonLanguageService(IPersonLanguageRepo dbPersonLanguageRepo)
         {
             _dbPersonLanguageRepo = dbPersonLanguageRepo;
         }
@@ -22,7 +22,7 @@ namespace MVCDataAssignment_V2.Models.Service
                 PersonId = createPersonLanguage.PersonId,
                 LanguageId = createPersonLanguage.LanguageId,
             };
-            return personLanguage;
+            return _dbPersonLanguageRepo.Create(personLanguage);
         }
 
         public bool Delete(CreatePersonLanguageViewModel deletePersonLanguage)
@@ -38,21 +38,12 @@ namespace MVCDataAssignment_V2.Models.Service
             return false;
         }
 
-        public PersonLanguage FindById(CreatePersonLanguageViewModel createPersonLanguage)
+        public PersonLanguage FindById(CreatePersonLanguageViewModel personLanguage)
         {
-            PersonLanguage personLanguage = new PersonLanguage();
-            if(createPersonLanguage.LanguageId > 0)
-            {
-
-                personLanguage.Language.PersonLanguages =_dbPersonLanguageRepo.ReadByLanguageId(createPersonLanguage.LanguageId);
-                return personLanguage;
-           
-            }else if(createPersonLanguage.PersonId > 0)
-            {
-                personLanguage.Person.PersonLanguages = _dbPersonLanguageRepo.ReadByLanguageId(createPersonLanguage.PersonId);
-                return personLanguage;
-            }
-            return null;
+            PersonLanguage personLanguageId = _dbPersonLanguageRepo
+                .ReadByLanguageId(personLanguage.LanguageId)
+                .SingleOrDefault(p => p.PersonId == personLanguage.PersonId);
+            return personLanguageId;
         }
 
         public List<PersonLanguage> GetAll()

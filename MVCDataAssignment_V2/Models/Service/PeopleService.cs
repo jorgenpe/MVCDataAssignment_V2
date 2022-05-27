@@ -45,13 +45,13 @@ namespace MVCDataAssignment_V2.Models
 
             
 
-            Person newPerson = new Person() { Id = 0, FirstName = person.FirstName, LastName = person.LastName, PhoneNumber = person.PhoneNumber,
+            Person newPerson = new Person() { PersonId = 0, FirstName = person.FirstName, LastName = person.LastName, PhoneNumber = person.PhoneNumber,
                             CityName = newCity, CityId = newCity.Id};
 
             Person createdPerson = _peopleRepo.Create(newPerson);
 
-            PersonLanguage personLanguage = new PersonLanguage() { PersonId = createdPerson.Id, LanguageId = person.LanguageId };
-            return _peopleRepo.Read(createdPerson.Id);         }
+            PersonLanguage personLanguage = new PersonLanguage() { PersonId = createdPerson.PersonId, LanguageId = person.LanguageId };
+            return _peopleRepo.Read(createdPerson.PersonId);         }
         
 
         public List<Person> All() { 
@@ -103,7 +103,7 @@ namespace MVCDataAssignment_V2.Models
             Person personInList = new Person();
 
             
-            personInList.Id = id;
+            personInList.PersonId = id;
             personInList.FirstName = person.FirstName;
             personInList.LastName = person.LastName;
             personInList.PhoneNumber = person.PhoneNumber;

@@ -23,14 +23,18 @@ namespace MVCDataAssignment_V2.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(CreatePersonLanguageViewModel personLanguage)
+        public IActionResult Create(int personId, int Id)
         {
+            CreatePersonLanguageViewModel personLanguage = new CreatePersonLanguageViewModel();
+            personLanguage.PersonId = personId;
+            personLanguage.LanguageId = Id;
 
             if (ModelState.IsValid)
             {

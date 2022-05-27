@@ -50,7 +50,7 @@ namespace MVCDataAssignment_V2.Models.Repo
             return _peopleDbContext.People
                 .Include(b => b.CityName)
                 .ThenInclude(a => a.CountryName)
-                .SingleOrDefault(p => p.Id == id);
+                .SingleOrDefault(p => p.PersonId == id);
 
         }
 

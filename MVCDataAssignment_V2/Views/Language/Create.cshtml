@@ -1,4 +1,4 @@
-﻿@model CreateLanguageViewModel;
+﻿@model List<Language>;
 
 
 
@@ -6,35 +6,44 @@
 
 <form asp-controller="PersonLanguage" asp-action="Create" method="post">
     
-
-    <label asp-for="PersonId"></label>
-    <input asp-for="PersonId" type = "hidden" value="PersonId"  />
-    <span asp-validation-for="PersonId"></span>
-
-   
+    <input id="personId" name="personId" type = "number" value="personId" min= "1" required  />    
 
 
-     <label asp-for="LanguageName"></label>
-    
-
-
-   <select asp-items="@(new SelectList(Model.languages,"Id",  "LanguageName"))" asp-for="Id">
-       
+   <select asp-items="@(new SelectList(Model,"Id","LanguageName"))" name="Id" value="Id">
+          
     </select>
-    <span asp-validation-for="LanguageName"></span>
+    
+         
 
-
-
-
-        
-
-    <button type="submit" class="btn btn-outline-dark">Create city</button>
+    <button type="submit" class="btn btn-outline-dark">Add language</button>
 
     
 </form>
 
+ <tbody>
+        @foreach (Language language in Model)
+    {
+            @foreach (PersonLanguage personLanguage in language.PersonLanguages)
+            {
+
+                <div class= "row">
+                    <div class= "col-sm">@personLanguage.PersonId</div>
+                    <div class= "col-sm">@personLanguage.Person.FirstName  </div>
+                    <div class= "col-sm">@personLanguage.Person.LastName  </div>
+                    @*<div class= "col-sm">@personLanguage.Person.CityName.CityName  </div>
+                    <div class= "col-sm">@personLanguage.Person.CityName.CountryName.CountryName</div>*@
+                    <div class= "col-sm ">@personLanguage.Language.LanguageName</div>
+                    <div class= "col-sm ">@personLanguage.LanguageId</div> 
+                    <div class= "col-sm "></div> 
+                </div>
+            }
+            
+        }
+
+    </tbody>
+
 <datalist id="languages">
-    @foreach (Language language in Model.languages)
+    @foreach (Language language in Model)
     {
         <option value="@language.LanguageName">@language.LanguageName</option>
         

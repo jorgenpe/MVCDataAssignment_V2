@@ -19,7 +19,7 @@ namespace MVCDataAssignment_V2.Models
 
         public Person Create(Person person) 
         {
-            person.Id = ++idCounter;
+            person.PersonId = ++idCounter;
             people.Add(person);
 
             return person; 
@@ -34,7 +34,7 @@ namespace MVCDataAssignment_V2.Models
         {
             foreach (Person person in people)
             {
-                if (person.Id == id)
+                if (person.PersonId == id)
                 {
                     return person;
                 }
@@ -47,7 +47,7 @@ namespace MVCDataAssignment_V2.Models
         {
             foreach (Person personList in people)
             {
-                if (personList.Id == person.Id)
+                if (personList.PersonId == person.PersonId)
                 {
                     personList.FirstName = person.FirstName;
                     personList.LastName = person.LastName;

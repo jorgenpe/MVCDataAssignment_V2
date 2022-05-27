@@ -1,4 +1,4 @@
-﻿@model CreateLanguageViewModel;
+﻿@model List<Language>;
 @{
     ViewData["Title"] = "Languge - Add new language";
 }
@@ -7,9 +7,8 @@
 <form asp-action="Create" method="post">
     
 
-    <label asp-for="LanguageName"></label>
-    <input asp-for="LanguageName" onfocus="this.value=''" />
-    <span asp-validation-for="LanguageName"></span>
+    <label ></label>
+    <input type="text" name="LanguageName" id ="LanguageName" onfocus="this.value=''" />
 
     <button type="submit" class="btn btn-outline-dark">Add language</button>
 

@@ -48,21 +48,21 @@
         {
             
                 <div class= "row">
-                    <div class= "col-sm">@person.Id</div>
+                    <div class= "col-sm">@person.PersonId</div>
                     <div class= "col-sm">@person.FirstName  </div>
                     <div class= "col-sm">@person.LastName  </div>
                     <div class= "col-sm">@person.CityName  </div>
                 
                     <div class= "col-sm">  
                         <form asp-action="Info" method="post">
-                            <input type="hidden"  value="@person.Id" name="id"/>
+                            <input type="hidden"  value="@person.PersonId" name="id"/>
                             <button type="submit" class="btn btn-outline-info"  >Person info </button>
                         </form> 
                     </div>
 
                     <div class= "col-sm">
                         <form asp-action="DeletePerson" method="post">
-                            <input type="hidden"  value="@person.Id" name="id"/>
+                            <input type="hidden"  value="@person.PersonId" name="id"/>
                             <button type="submit" class= "btn btn-outline-danger">Delete </button>
                         </form>                  
                     </div>

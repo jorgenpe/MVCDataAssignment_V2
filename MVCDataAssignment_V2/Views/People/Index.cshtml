@@ -26,8 +26,10 @@
        
         
     </div>
+
+    <a class="btn btn-outline-dark" asp-area="" asp-controller="Language" asp-action="Create"  >Add language</a>
     
-        <form asp-controller="Language" asp-action="create" method="post">
+        @*<form asp-controller="Language" asp-action="createIndex" method="post">
                 <div class= "row">
                    
                     <div class= "col-sm">
@@ -41,21 +43,23 @@
                        </div>     
 
                             <div class= "col-sm">
-                                <input type="number"   name="textin" min= "1" id="PersonId" value="PersonId" required />
+                                <input type="number"   name="personId" min= "1" id="PersonId" value="PersonId" required />
                                 
-                           </div> 
+                           </div>
+                           
+                             <form asp-controller="Language" asp-action="GetIndex" method="get" id="languages">
                             <div>
-                                <input type="hidden" asp-controller = "Language" asp-action="GetIndex" id="languages" value = "languages"/>
+                                <input type="hidden" name="languages" id="languages" value = "languages"/>
                             </div>
-                   
-
+                            </form>
+                            
 
                     
                     <div class= "col-sm"></div>
                     <div class= "col-sm"></div>
 
                 </div>
-        </form>
+        </form>*@
     
 
 <table>

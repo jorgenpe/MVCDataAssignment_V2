@@ -10,7 +10,7 @@ namespace MVCDataAssignment_V2.Models
     public class Person
     {
         [Key]
-        public int Id { get; set; }
+        public int PersonId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
@@ -19,6 +19,7 @@ namespace MVCDataAssignment_V2.Models
         public int? CityId { get; set; }
         public City   CityName { get; set; }
 
+        
         //[Required]
         //public int LanguageId { get; set; } 
 

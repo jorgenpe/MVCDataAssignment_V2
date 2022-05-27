@@ -21,9 +21,8 @@ namespace MVCDataAssignment_V2.Controllers
 
         public IActionResult Index()
         {
-            CreateLanguageViewModel language = new CreateLanguageViewModel();
-            language.languages = _langauageService.All();
-            return View(language);
+           
+            return View(_langauageService.All());
         }
 
         public IActionResult GetIndex()
@@ -37,17 +36,45 @@ namespace MVCDataAssignment_V2.Controllers
         public IActionResult Create()
         {
             CreateLanguageViewModel language = new CreateLanguageViewModel();
-            language.languages = _langauageService.All();
-            return View(language);
+            //language.languages = ;
+            return View(_langauageService.All());
         }
 
         [HttpPost]
-        public IActionResult Create(CreateLanguageViewModel createLanguageViewModel)
+        public IActionResult Create(string LanguageName )
         {
+            CreateLanguageViewModel language = new CreateLanguageViewModel();
+            language.LanguageName = LanguageName;
+            
+            
             if (ModelState.IsValid)
             {
-                _langauageService.Add(createLanguageViewModel);
-                return RedirectToAction("Index");
+                _langauageService.Add(language);
+                return Redirect("Index");
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult CreateIndex()
+        {
+            CreateLanguageViewModel language = new CreateLanguageViewModel();
+            //language.languages = ;
+            return View(_langauageService.All());
+        }
+
+        [HttpPost]
+        public IActionResult CreateIndex(string LanguageName)
+        {
+            CreateLanguageViewModel language = new CreateLanguageViewModel();
+            language.LanguageName = LanguageName;
+            
+
+            if (ModelState.IsValid)
+            {
+                _langauageService.Add(language);
+                return Redirect("Create");
             }
 
             return View();

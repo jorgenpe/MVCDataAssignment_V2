@@ -16,11 +16,11 @@ namespace MVCDataAssignment_V2.Data
 
         } 
 
-        public DbSet<Person> People { get; set; }
+        /*public DbSet<Person> People { get; set; }
         public DbSet<Country> Countrys { get; set; }
         public DbSet<City> Citys { get; set;}
         public DbSet<Language> Languages { get; set; }
-        public DbSet<PersonLanguage> PersonLanguages { get; set; }
+        public DbSet<PersonLanguage> PersonLanguages { get; set; }*/
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -39,22 +39,28 @@ namespace MVCDataAssignment_V2.Data
 
             modelBuilder.Entity<PersonLanguage>().HasKey(pl =>
                new {
-                   pl.LanguageId,
-                   pl.PersonId
+                   pl.PersonId ,
+                   pl.LanguageId
                });
 
 
             modelBuilder.Entity<PersonLanguage>()
-                .HasOne<Person>(pl => pl.Person)
-                .WithMany(p => p.PersonLanguages)
-                .HasForeignKey(pl => pl.LanguageId);
-
-            modelBuilder.Entity<PersonLanguage>()
-                .HasOne<Language>(pl => pl.Language)
+                .HasOne(pl => pl.Person)
                 .WithMany(p => p.PersonLanguages)
                 .HasForeignKey(pl => pl.PersonId);
 
+            modelBuilder.Entity<PersonLanguage>()
+                .HasOne(pl => pl.Language)
+                .WithMany(p => p.PersonLanguages)
+                .HasForeignKey(pl => pl.LanguageId);
+
         }
+
+        public DbSet<Person> People { get; set; }
+        public DbSet<Country> Countrys { get; set; }
+        public DbSet<City> Citys { get; set; }
+        public DbSet<Language> Languages { get; set; }
+        public DbSet<PersonLanguage> PersonLanguages { get; set; }
 
 
     }

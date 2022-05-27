@@ -45,6 +45,9 @@ namespace MVCDataAssignment_V2
             services.AddScoped<ICountryRepo, DbCountryRepo>();
             services.AddScoped<ILanguageRepo, DbLanguageRepo>();
             services.AddScoped<ILanguageService, LanguageService>();
+            services.AddScoped<IPersonLanguageRepo, DbPersonLanguageRepo>();
+            services.AddScoped<IPersonLanguageService, PersonLanguageService>();
+            //services.AddTransient<DbContext, PeopleDbContext>();
 
             services.AddDistributedMemoryCache();
 

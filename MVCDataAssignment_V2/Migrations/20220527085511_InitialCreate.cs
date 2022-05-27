@@ -56,7 +56,7 @@ namespace MVCDataAssignment_V2.Migrations
                 name: "People",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    PersonId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
@@ -65,7 +65,7 @@ namespace MVCDataAssignment_V2.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_People", x => x.Id);
+                    table.PrimaryKey("PK_People", x => x.PersonId);
                     table.ForeignKey(
                         name: "FK_People_Citys_CityId",
                         column: x => x.CityId,
@@ -83,18 +83,18 @@ namespace MVCDataAssignment_V2.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PersonLanguages", x => new { x.LanguageId, x.PersonId });
+                    table.PrimaryKey("PK_PersonLanguages", x => new { x.PersonId, x.LanguageId });
                     table.ForeignKey(
-                        name: "FK_PersonLanguages_People_LanguageId",
+                        name: "FK_PersonLanguages_Languages_LanguageId",
                         column: x => x.LanguageId,
-                        principalTable: "People",
+                        principalTable: "Languages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PersonLanguages_Languages_PersonId",
+                        name: "FK_PersonLanguages_People_PersonId",
                         column: x => x.PersonId,
-                        principalTable: "Languages",
-                        principalColumn: "Id",
+                        principalTable: "People",
+                        principalColumn: "PersonId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -109,9 +109,9 @@ namespace MVCDataAssignment_V2.Migrations
                 column: "CityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PersonLanguages_PersonId",
+                name: "IX_PersonLanguages_LanguageId",
                 table: "PersonLanguages",
-                column: "PersonId");
+                column: "LanguageId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -120,10 +120,10 @@ namespace MVCDataAssignment_V2.Migrations
                 name: "PersonLanguages");
 
             migrationBuilder.DropTable(
-                name: "People");
+                name: "Languages");
 
             migrationBuilder.DropTable(
-                name: "Languages");
+                name: "People");
 
             migrationBuilder.DropTable(
                 name: "Citys");

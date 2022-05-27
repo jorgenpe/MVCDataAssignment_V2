@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVCDataAssignment_V2.Migrations
 {
     [DbContext(typeof(PeopleDbContext))]
-    [Migration("20220524144937_InitialCreate")]
+    [Migration("20220527085511_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,7 +73,7 @@ namespace MVCDataAssignment_V2.Migrations
 
             modelBuilder.Entity("MVCDataAssignment_V2.Models.Person", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("PersonId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -90,7 +90,7 @@ namespace MVCDataAssignment_V2.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("PersonId");
 
                     b.HasIndex("CityId");
 
@@ -99,15 +99,15 @@ namespace MVCDataAssignment_V2.Migrations
 
             modelBuilder.Entity("MVCDataAssignment_V2.Models.PersonLanguage", b =>
                 {
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("int");
-
                     b.Property<int>("PersonId")
                         .HasColumnType("int");
 
-                    b.HasKey("LanguageId", "PersonId");
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("PersonId");
+                    b.HasKey("PersonId", "LanguageId");
+
+                    b.HasIndex("LanguageId");
 
                     b.ToTable("PersonLanguages");
                 });
@@ -128,13 +128,13 @@ namespace MVCDataAssignment_V2.Migrations
 
             modelBuilder.Entity("MVCDataAssignment_V2.Models.PersonLanguage", b =>
                 {
-                    b.HasOne("MVCDataAssignment_V2.Models.Person", "Person")
+                    b.HasOne("MVCDataAssignment_V2.Models.Language", "Language")
                         .WithMany("PersonLanguages")
                         .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MVCDataAssignment_V2.Models.Language", "Language")
+                    b.HasOne("MVCDataAssignment_V2.Models.Person", "Person")
                         .WithMany("PersonLanguages")
                         .HasForeignKey("PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
