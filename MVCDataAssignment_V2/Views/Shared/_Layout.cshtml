@@ -29,7 +29,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="AJAXPeople" asp-action="AJAXPeople">AJAXPeople</a>
                         </li>
 
-                        @if(User.IsInRole("SuperAdmin")){
+                        @if(User.IsInRole("Admin")){
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="City" asp-action="Index">Add City</a>
                             </li>

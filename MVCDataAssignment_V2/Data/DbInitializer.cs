@@ -21,11 +21,11 @@ namespace MVCDataAssignment_V2.Data
 
             if (context.Roles.Any())//seed check
             {
-                IdentityRole role = new IdentityRole("SuperAdmin");
-                IdentityResult result = await roleManager.CreateAsync(role);
-                if (!result.Succeeded)
+                IdentityRole roleA = new IdentityRole("SuperAdmin");
+                IdentityResult resultA = await roleManager.CreateAsync(roleA);
+                if (!resultA.Succeeded)
                 {
-                    ErrorMessages(result);
+                    ErrorMessages(resultA);
                 }
                 AccountPerson accountPerson = new AccountPerson
                 {
@@ -35,15 +35,41 @@ namespace MVCDataAssignment_V2.Data
                     UserName = "SuperAdmin",
                     Email = "superadmin@admin.se"
                 };
-                IdentityResult userResult = await userManager.CreateAsync(accountPerson, "!!aaAA11??");
+                IdentityResult userResult = await userManager.CreateAsync(accountPerson, "3MjaU64ByvLu7MU!!");
                 if (!userResult.Succeeded)
                 {
                     ErrorMessages(userResult);
                 }
+                userManager.AddToRoleAsync(accountPerson, roleA.Name).Wait();
+            }
+
+
+            if (!context.Roles.Any(role => role.Name == "Admin"))
+            {
+                IdentityRole role = new IdentityRole("Admin");
+                IdentityResult result = await roleManager.CreateAsync(role);
+
+                if (!result.Succeeded)
+                {
+                    ErrorMessages(result);
+                }
+                //add user to role
+                AccountPerson accountPerson = new AccountPerson
+                {
+                    FirstName = "Admina",
+                    LastName = "Admin",
+                    DateOfBirth = DateTime.Now,
+                    UserName = "Admin",
+                    Email = "admina@admin.se"
+                };
+                IdentityResult identityResult = await userManager.CreateAsync(accountPerson, "64Byv3MijaULu7MU!!");
+                if (!identityResult.Succeeded)
+                {
+                    ErrorMessages(identityResult);
+                }
                 userManager.AddToRoleAsync(accountPerson, role.Name).Wait();
             }
 
-            
 
 
         }

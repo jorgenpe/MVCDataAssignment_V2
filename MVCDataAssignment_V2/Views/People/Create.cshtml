@@ -23,8 +23,10 @@
     
 
     <label asp-for="CityName"></label>
-    <input asp-for="NameCity"  />
-    <span asp-validation-for="NameCity"></span>
+
+    <label for="city">City: </label>
+    <input list="cityList" id="city" name="city" value="cityName" />
+    
 
     <label asp-for="CountryName"></label>
     
@@ -40,14 +42,17 @@
     
 </form>
 
-<datalist id="cityList">
-    @foreach (City city in Model.Cities)
-    {
 
-        <option value= " @city.CityName">@city.CityName </option>
-        
+    @foreach (Country country in Model.CountrysList)
+    {
+        <datalist id="cityList" >
+        @foreach (City city in country.CountryCitys)
+        {
+            <option value= " @city.CityName">@city.CityName </option>
+        } 
+        </datalist>
     }
-</datalist>
+
 
 <datalist id="countrysList">
     @foreach (Country country in Model.CountrysList)

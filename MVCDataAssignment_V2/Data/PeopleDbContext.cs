@@ -58,11 +58,11 @@ namespace MVCDataAssignment_V2.Data
                 .HasForeignKey(pl => pl.LanguageId);
 
 
-            /*string AdminId = Guid.NewGuid().ToString();
+            string AdminId = Guid.NewGuid().ToString();
             string AdminRoleId = Guid.NewGuid().ToString();
             string UserRoleId = Guid.NewGuid().ToString();
 
-            modelBuilder.Entity<AccountPerson>().HasData(new AccountPerson
+           /* modelBuilder.Entity<AccountPerson>().HasData(new AccountPerson
             {
                 Id = AdminId,
                 UserName = "Admin",
