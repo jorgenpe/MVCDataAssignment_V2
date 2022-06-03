@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MVCDataAssignment_V2.Models;
 namespace MVCDataAssignment_V2.Controllers
@@ -58,7 +59,7 @@ namespace MVCDataAssignment_V2.Controllers
         {
             return View(createPerson);
         }*/
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult DeletePerson(int id)
         {
@@ -71,7 +72,7 @@ namespace MVCDataAssignment_V2.Controllers
             
             return View();
         }
-
+        
         [HttpPost]
         public IActionResult Info(int id)
         {

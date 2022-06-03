@@ -13,6 +13,7 @@ using MVCDataAssignment_V2.Data;
 using MVCDataAssignment_V2.Models.Repo;
 using MVCDataAssignment_V2.Models.Service;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace MVCDataAssignment_V2
 {
@@ -65,6 +66,21 @@ namespace MVCDataAssignment_V2
             // //Will be used later maybe
             services.AddMvc().AddRazorRuntimeCompilation();
             services.AddRazorPages();
+
+
+            services.AddIdentity<AccountPerson, IdentityRole>()
+                .AddEntityFrameworkStores<PeopleDbContext>()
+                .AddDefaultTokenProviders();
+
+
+
+            /*services.Configure<IdentityOptions>(options =>
+            {
+                // Default Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+            });*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -85,7 +101,7 @@ namespace MVCDataAssignment_V2
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

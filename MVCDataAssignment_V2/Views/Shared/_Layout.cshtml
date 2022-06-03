@@ -29,17 +29,37 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="AJAXPeople" asp-action="AJAXPeople">AJAXPeople</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="City" asp-action="Index">Add City</a>
-                        </li>
+                        @if(User.IsInRole("SuperAdmin")){
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="City" asp-action="Index">Add City</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Country" asp-action="Index">Add Country</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Country" asp-action="Index">Add Country</a>
+                            </li>
+                        }
 
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Language" asp-action="Index">Language</a>
                         </li>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+
+                            <li class="nav-item">
+                                <p class="nav-link text-dark">@User.Identity.Name</p>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="AccountPerson" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="AccountPerson" asp-action="Login">Login</a>
+                            </li>
+                        }
+
 
                     </ul>
                 </div>

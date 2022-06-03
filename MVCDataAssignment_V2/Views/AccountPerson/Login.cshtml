@@ -1,0 +1,31 @@
+﻿@model MVCDataAssignment_V2.Models.Service.AccountPersonService
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+<h4>AccountPersonService</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="AccountPerson" asp-action="Login" method="post">
+            <input type="text" name="userName" />
+            <input type="password" name="password" />
+            <button class="btn btn-success">Login</button>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="nav-link text-dark" asp-area="" asp-controller="AccountPerson" asp-action="RegisterUser">New user</a>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
