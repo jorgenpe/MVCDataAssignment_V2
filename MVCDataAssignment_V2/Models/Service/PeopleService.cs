@@ -13,7 +13,7 @@ namespace MVCDataAssignment_V2.Models
         private readonly IPeopleRepo _peopleRepo;
         private readonly ICityService _cityService;
         private readonly ICountryService _countryService;
-        private readonly IPersonLanguageRepo personLanguageRepo;
+        //private readonly IPersonLanguageRepo personLanguageRepo;
 
         
 
@@ -38,7 +38,7 @@ namespace MVCDataAssignment_V2.Models
                 }
             }
 
-            CreateCityViewModel city = new CreateCityViewModel() { CityName = person.NameCity
+            CreateCityViewModel city = new CreateCityViewModel() { CityName = _cityService.FindById(person.CityId).CityName
                 , CountryId = person.CountryId, CountryName = _countryService.FindById(person.CountryId) , CountrysList = person.CountrysList
             };
             City newCity =_cityService.Add(city);
@@ -50,7 +50,7 @@ namespace MVCDataAssignment_V2.Models
 
             Person createdPerson = _peopleRepo.Create(newPerson);
 
-            PersonLanguage personLanguage = new PersonLanguage() { PersonId = createdPerson.PersonId, LanguageId = person.LanguageId };
+            //PersonLanguage personLanguage = new PersonLanguage() { PersonId = createdPerson.PersonId, LanguageId = person.LanguageId };
             return _peopleRepo.Read(createdPerson.PersonId);         }
         
 

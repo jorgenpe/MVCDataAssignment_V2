@@ -25,7 +25,7 @@ namespace MVCDataAssignment_V2.Controllers
         }
 
 
-        public IActionResult City()
+        /*public IActionResult City()
         {
             return View();
         }
@@ -33,7 +33,7 @@ namespace MVCDataAssignment_V2.Controllers
         public IActionResult GetCity()
         {
             return PartialView("_CountryList", _countryService.All());
-        }
+        }*/
 
         [HttpGet]
         public IActionResult Create()

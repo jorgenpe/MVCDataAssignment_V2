@@ -24,8 +24,9 @@
 
     <label asp-for="CityName"></label>
 
-    <label for="city">City: </label>
-    <input list="cityList" id="city" name="city" value="cityName" />
+    <select asp-items="@(new SelectList(Model.Cities,"Id",  "CityName", "CountryName"))" asp-for="CityId">
+       
+    </select>
     
 
     <label asp-for="CountryName"></label>
@@ -43,15 +44,16 @@
 </form>
 
 
-    @foreach (Country country in Model.CountrysList)
-    {
-        <datalist id="cityList" >
-        @foreach (City city in country.CountryCitys)
-        {
-            <option value= " @city.CityName">@city.CityName </option>
+     <datalist id="cityList" >
+
+         
+        @foreach (City city in Model.Cities)
+        {            
+            <option value= "@city.CityName">@city.CityName</option> 
+                    
         } 
         </datalist>
-    }
+    
 
 
 <datalist id="countrysList">

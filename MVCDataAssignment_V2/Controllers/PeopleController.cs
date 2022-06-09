@@ -15,7 +15,7 @@ namespace MVCDataAssignment_V2.Controllers
 
         public PeopleController(IPeopleService peopleService, ICityService cityService, ICountryService countryService)
         {
-            this._peopleService = peopleService;
+            _peopleService = peopleService;
             _cityService = cityService;
             _countryService = countryService;
         }
@@ -32,7 +32,7 @@ namespace MVCDataAssignment_V2.Controllers
         public IActionResult Create()
         {
             CreatePersonViewModel createPerson = new CreatePersonViewModel();
-            createPerson.Cities = _cityService.All();
+            createPerson.Cities = _cityService.UniqAll();
             createPerson.CountrysList = _countryService.All();
 
             return View(createPerson);

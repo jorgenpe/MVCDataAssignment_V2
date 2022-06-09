@@ -47,6 +47,17 @@ namespace MVCDataAssignment_V2.Models
             return null;
         }
 
+        public List<City> UniqAll()
+        {
+
+            if (_citysRepo != null)
+            {
+                return _citysRepo.UniqRead();
+
+            }
+            return null;
+        }
+
         public List<City> Search(string search)
         {
             
@@ -75,13 +86,13 @@ namespace MVCDataAssignment_V2.Models
             return _citysRepo.Read(id);
         }
 
-        public bool Edit(int id, CreateCityViewModel country)
+        public bool Edit(int id, CreateCityViewModel city)
         {
             City CityInList = new City();
 
 
             CityInList.Id = id;
-            CityInList.CityName = country.CityName;
+            CityInList.CityName = city.CityName;
 
 
             return _citysRepo.Update(CityInList);

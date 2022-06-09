@@ -64,7 +64,7 @@ namespace MVCDataAssignment_V2.Controllers
                 return RedirectToAction("Index");
             }
 
-            createCity.CountrysList = _countryService.All();
+            //createCity.CountrysList = _countryService.All();
 
             
             return View(createCity);
