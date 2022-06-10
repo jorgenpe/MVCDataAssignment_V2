@@ -100,14 +100,18 @@ namespace MVCDataAssignment_V2.Models
 
         public bool Edit(int id, CreatePersonViewModel person) 
         {
-            Person personInList = new Person();
+            Person personInList = _peopleRepo.Read(id);
 
             
-            personInList.PersonId = id;
+            
             personInList.FirstName = person.FirstName;
             personInList.LastName = person.LastName;
             personInList.PhoneNumber = person.PhoneNumber;
-            
+            personInList.CityId = person.CityId;
+            personInList.CityName = _cityService.FindById(person.CityId);
+            personInList.CityName.CountryId = person.CountryId;
+            personInList.CityName.CountryName = _countryService.FindById(person.CountryId);
+
 
             return _peopleRepo.Update(personInList); 
         }

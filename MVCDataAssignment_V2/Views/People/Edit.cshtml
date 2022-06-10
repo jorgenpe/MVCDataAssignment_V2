@@ -1,0 +1,67 @@
+﻿@model CreatePersonViewModel;
+
+
+<h1>Edit person</h1>
+
+<form asp-action="Edit" method="post">
+    
+    <input type="hidden" asp-for="id" onfocus="this.value=''" value="@Model.id"/>
+   
+
+    <label asp-for="FirstName"></label>
+    <input asp-for="FirstName" onfocus="this.value=''" value="@Model.FirstName"/>
+    <span asp-validation-for="FirstName"></span>
+
+    <label asp-for="LastName"></label>
+    <input asp-for="LastName" onfocus="this.value=''" value="@Model.LastName"/>
+    <span asp-validation-for="LastName"></span>
+
+    <label asp-for="PhoneNumber"></label>
+    <input asp-for="PhoneNumber"onfocus="this.value=''" value="@Model.PhoneNumber"/>
+    <span asp-validation-for="PhoneNumber"></span>
+
+
+
+    
+
+    <label asp-for="CityName"></label>
+
+    <select asp-items="@(new SelectList(Model.Cities,"Id",  "CityName", "CountryName"))" asp-for="CityId" value= "@Model.CityName">
+       
+    </select>
+    
+
+    <label asp-for="CountryName"></label>
+    
+    <select asp-items="@(new SelectList(Model.CountrysList,"Id",  "CountryName"))" asp-for="CountryId" value= "@Model.CountryName">
+       
+    </select>
+    <span asp-validation-for="CountryId"></span>
+
+    
+
+    <button type="submit" class="btn btn-outline-dark">Edit person</button>
+
+    
+</form>
+
+
+     <datalist id="cityList" >
+
+         
+        @foreach (City city in Model.Cities)
+        {            
+            <option value= "@city.CityName">@city.CityName</option> 
+                    
+        } 
+        </datalist>
+    
+
+
+<datalist id="countrysList">
+    @foreach (Country country in Model.CountrysList)
+    {
+        <option value="@country.CountryName">@country.CountryName</option>
+        
+    }
+</datalist>

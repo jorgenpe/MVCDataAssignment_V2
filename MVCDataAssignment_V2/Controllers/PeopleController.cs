@@ -53,12 +53,60 @@ namespace MVCDataAssignment_V2.Controllers
             return View(createPerson);
         }
 
-
-        /*[HttpPut]
-        public IActionResult Edit(int id,CreatePersonViewModel createPerson)
+        [HttpGet]
+        public IActionResult Edit()
         {
-            return View(createPerson);
-        }*/
+            /*id = 10;
+            Person person = _peopleService.FindById(id);
+            editPerson.id = id;
+            editPerson.FirstName = person.FirstName;
+            editPerson.LastName = person.LastName;
+            editPerson.PhoneNumber = person.PhoneNumber;
+            editPerson.CityId = (int)person.CityId;
+            editPerson.CityName = person.CityName;
+            editPerson.CountryId = (int)_cityService.FindById((int)person.CityId).CountryId;
+            editPerson.CountryName = _cityService.FindById((int)person.CityId).CountryName;*/
+            CreatePersonViewModel editPerson = new CreatePersonViewModel();
+            
+            editPerson.Cities = _cityService.UniqAll();
+            editPerson.CountrysList = _countryService.All();
+
+            
+            return View(editPerson);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, CreatePersonViewModel createPerson)
+        {
+            
+            Person person = _peopleService.FindById(id);
+            CreatePersonViewModel editPerson = new CreatePersonViewModel();
+            
+            editPerson.id = id;
+            editPerson.Cities = _cityService.UniqAll();
+            editPerson.CountrysList = _countryService.All();
+            editPerson.FirstName = person.FirstName;
+            editPerson.LastName = person.LastName;
+            editPerson.PhoneNumber = person.PhoneNumber;
+            editPerson.CityId = (int)person.CityId;
+            editPerson.CityName = person.CityName;
+            editPerson.CountryId = (int)_cityService.FindById((int)person.CityId).CountryId;
+            editPerson.CountryName = _cityService.FindById((int)person.CityId).CountryName;
+
+            if (ModelState.IsValid && createPerson != null)
+            {
+                id = editPerson.id;
+                _peopleService.Edit(id, createPerson);
+
+                return RedirectToAction("Index");
+            }
+            createPerson.CountrysList = _countryService.All();
+            createPerson.Cities = _cityService.All();
+
+            return View(editPerson);
+        }
+
+
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult DeletePerson(int id)

@@ -9,6 +9,7 @@ namespace MVCDataAssignment_V2.Models
 {
     public class CreatePersonViewModel
     {
+        public int id { get; set; }
         [Required]
         [StringLength(255)]
         public string FirstName { get; set; }

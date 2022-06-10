@@ -17,6 +17,14 @@
                     </div>
 
                     <div class= "col-sm">
+                        <form asp-action="Edit" method="post">
+                            <input type="hidden"  value="@Model.PersonId" name="id"/>
+                            <button type="submit" class= "btn btn-outline-danger">Edit </button>
+                        </form>
+                        @*<a class="btn btn-outline-dark" asp-area="" asp-controller="People" asp-action="Edit" value="@Model.PersonId" name="id"  >Edit person</a>*@
+                    </div>
+
+                    <div class= "col-sm">
                         <form asp-action="DeletePerson" method="post">
                             <input type="hidden"  value="@Model.PersonId" name="id"/>
                             <button type="submit" class= "btn btn-outline-danger">Delete </button>
