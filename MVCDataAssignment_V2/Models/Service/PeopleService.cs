@@ -102,13 +102,21 @@ namespace MVCDataAssignment_V2.Models
         {
             Person personInList = _peopleRepo.Read(id);
 
-            
-            
+            CreateCityViewModel city = new CreateCityViewModel()
+            {
+                CityName = person.NameCity
+                ,
+                CountryId = person.CountryId,
+                CountryName = _countryService.FindById(person.CountryId),
+                CountrysList = person.CountrysList
+            };
+            City newCity = _cityService.Add(city);
+
             personInList.FirstName = person.FirstName;
             personInList.LastName = person.LastName;
             personInList.PhoneNumber = person.PhoneNumber;
-            personInList.CityId = person.CityId;
-            personInList.CityName = _cityService.FindById(person.CityId);
+            personInList.CityId = newCity.Id;
+            personInList.CityName = newCity;
             personInList.CityName.CountryId = person.CountryId;
             personInList.CityName.CountryName = _countryService.FindById(person.CountryId);
 

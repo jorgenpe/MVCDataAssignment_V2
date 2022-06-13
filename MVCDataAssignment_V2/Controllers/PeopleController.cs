@@ -83,6 +83,7 @@ namespace MVCDataAssignment_V2.Controllers
             CreatePersonViewModel editPerson = new CreatePersonViewModel();
             
             editPerson.id = id;
+            editPerson.NameCity = person.CityName.CityName;
             editPerson.uniqCities = _cityService.UniqAll();
             editPerson.CountrysList = _countryService.All();
             editPerson.FirstName = person.FirstName;

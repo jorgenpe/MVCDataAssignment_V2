@@ -24,14 +24,14 @@
 
     <label asp-for="CityName"></label>
 
-    <select asp-items="@(new SelectList(Model.uniqCities))" asp-for="NameCity" >
+    <select  asp-items="@(new SelectList(Model.uniqCities))" asp-for="NameCity" >
        
     </select>
     
 
     <label asp-for="CountryName"></label>
     
-    <select asp-items="@(new SelectList(Model.CountrysList,"Id",  "CountryName"))" asp-for="CountryId">
+    <select asp-items="@( new SelectList(Model.CountrysList,"Id",  "CountryName")) "  asp-for="CountryId">
        
     </select>
     <span asp-validation-for="CountryId"></span>
@@ -48,8 +48,12 @@
 
          
         @foreach (string city in Model.uniqCities)
-        {            
-            <option value= "@city">@city</option> 
+    {   if(Model.NameCity == city)
+        {
+            <option  value= "@city" selected>@city</option> 
+        }else{
+            <option  value= "@city">@city</option> }        
+        
                     
         } 
         </datalist>
