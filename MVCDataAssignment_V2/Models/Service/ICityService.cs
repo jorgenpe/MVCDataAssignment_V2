@@ -12,7 +12,7 @@ namespace MVCDataAssignment_V2.Models
     {
         City Add(CreateCityViewModel City);
         List<City> All();
-        List<City> UniqAll();
+        List<string> UniqAll();
         List<City> Search(string search);
         City FindById(int id);
         bool Edit(int id, CreateCityViewModel city);

@@ -38,7 +38,7 @@ namespace MVCDataAssignment_V2.Models
                 }
             }
 
-            CreateCityViewModel city = new CreateCityViewModel() { CityName = _cityService.FindById(person.CityId).CityName
+            CreateCityViewModel city = new CreateCityViewModel() { CityName = person.NameCity
                 , CountryId = person.CountryId, CountryName = _countryService.FindById(person.CountryId) , CountrysList = person.CountrysList
             };
             City newCity =_cityService.Add(city);

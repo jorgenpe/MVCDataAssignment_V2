@@ -10,7 +10,7 @@ namespace MVCDataAssignment_V2.Models
     {
         City Create(City city);
         List<City> Read();
-        List<City> UniqRead();
+        List<string> UniqRead();
         City Read(int id);
         bool Update(City city);
         bool Delete(City city);

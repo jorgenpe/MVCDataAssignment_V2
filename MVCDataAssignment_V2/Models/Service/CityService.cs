@@ -47,7 +47,7 @@ namespace MVCDataAssignment_V2.Models
             return null;
         }
 
-        public List<City> UniqAll()
+        public List<string> UniqAll()
         {
 
             if (_citysRepo != null)

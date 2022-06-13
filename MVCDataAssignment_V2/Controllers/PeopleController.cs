@@ -32,7 +32,7 @@ namespace MVCDataAssignment_V2.Controllers
         public IActionResult Create()
         {
             CreatePersonViewModel createPerson = new CreatePersonViewModel();
-            createPerson.Cities = _cityService.UniqAll();
+            createPerson.uniqCities = _cityService.UniqAll();
             createPerson.CountrysList = _countryService.All();
 
             return View(createPerson);
@@ -68,7 +68,7 @@ namespace MVCDataAssignment_V2.Controllers
             editPerson.CountryName = _cityService.FindById((int)person.CityId).CountryName;*/
             CreatePersonViewModel editPerson = new CreatePersonViewModel();
             
-            editPerson.Cities = _cityService.UniqAll();
+            editPerson.uniqCities = _cityService.UniqAll();
             editPerson.CountrysList = _countryService.All();
 
             
@@ -83,7 +83,7 @@ namespace MVCDataAssignment_V2.Controllers
             CreatePersonViewModel editPerson = new CreatePersonViewModel();
             
             editPerson.id = id;
-            editPerson.Cities = _cityService.UniqAll();
+            editPerson.uniqCities = _cityService.UniqAll();
             editPerson.CountrysList = _countryService.All();
             editPerson.FirstName = person.FirstName;
             editPerson.LastName = person.LastName;

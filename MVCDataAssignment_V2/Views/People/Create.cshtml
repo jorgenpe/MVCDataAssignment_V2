@@ -24,7 +24,7 @@
 
     <label asp-for="CityName"></label>
 
-    <select asp-items="@(new SelectList(Model.Cities,"Id",  "CityName", "CountryName"))" asp-for="CityId">
+    <select asp-items="@(new SelectList(Model.uniqCities))" asp-for="NameCity" >
        
     </select>
     
@@ -47,9 +47,9 @@
      <datalist id="cityList" >
 
          
-        @foreach (City city in Model.Cities)
+        @foreach (string city in Model.uniqCities)
         {            
-            <option value= "@city.CityName">@city.CityName</option> 
+            <option value= "@city">@city</option> 
                     
         } 
         </datalist>

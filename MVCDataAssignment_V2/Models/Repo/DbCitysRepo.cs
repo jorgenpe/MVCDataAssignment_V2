@@ -46,11 +46,11 @@ namespace MVCDataAssignment_V2.Models.Repo
                 .ToList();
         }
 
-        public List<City> UniqRead()
+        public List<string> UniqRead()
         {
-            Boolean cityBool = false;
-            List < City > list = new List < City >();
-            
+           
+            List < string > list = new List < string >();
+            HashSet<string > setList = new HashSet<string>();
 
             if (_peopleDbContext.Citys == null)
             {
@@ -59,26 +59,10 @@ namespace MVCDataAssignment_V2.Models.Repo
            
             foreach(City city in _peopleDbContext.Citys)
             {
-                if(list.Count == 0)
-                {
-                    list.Add(city);
-                }
-                else
-                {
-                    foreach(City cityList in list)
-                    {
-                        if(cityList.CityName == city.CityName && cityList.Id != city.Id) 
-                        {
-                            cityBool = false;
-                        }else if (cityList.CityName != city.CityName) {
-                            cityBool = true; 
-                        }
-                    }  
-                    if(cityBool) { list.Add(city); }
-                    cityBool = false;
-                }
+                setList.Add(city.CityName);
                 
             }
+            list = setList.ToList();
             
             return list;
       
