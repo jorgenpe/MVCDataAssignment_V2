@@ -14,7 +14,7 @@ namespace MVCDataAssignment_V2.Models.Service
 
         public CountryService(ICountryRepo countryRepo)
         {
-            this._countryRepo = countryRepo;
+            _countryRepo = countryRepo;
         }
 
         public Country Add(CreateCountryViewModel country) 

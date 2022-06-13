@@ -12,11 +12,11 @@ namespace MVCDataAssignment_V2.Models
         private readonly ICitysRepo _citysRepo;
         private readonly ICountryService _countryService;
 
-        Country country = new Country();
+        //Country country = new Country();
 
         public CityService(ICitysRepo citysRepo,ICountryService countryService )
         {
-            this._citysRepo = citysRepo;
+            _citysRepo = citysRepo;
             _countryService = countryService;
         }
 

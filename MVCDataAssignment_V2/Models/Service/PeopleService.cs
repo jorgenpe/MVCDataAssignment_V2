@@ -19,7 +19,7 @@ namespace MVCDataAssignment_V2.Models
 
         public PeopleService(IPeopleRepo peopleRepo, ICityService cityService, ICountryService countryService)
         {
-            this._peopleRepo = peopleRepo;
+            _peopleRepo = peopleRepo;
             _cityService = cityService;
             _countryService = countryService;   
         }

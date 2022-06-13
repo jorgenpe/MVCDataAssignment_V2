@@ -79,7 +79,7 @@ namespace MVCDataAssignment_V2.Models.Repo
                 }
                 
             }
-            list.RemoveAt(list.Count - 1);
+            
             return list;
       
 
