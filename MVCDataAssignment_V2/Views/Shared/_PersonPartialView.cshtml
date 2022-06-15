@@ -2,13 +2,15 @@
 @model Person
 
     <div class= "row">
+            
                     <div class= "col-sm">@Model.PersonId</div>
                     <div class= "col-sm">@Model.FirstName </div>
                     <div class= "col-sm">@Model.LastName  </div>
                     <div class= "col-sm">@Model.CityName.CityName  </div>
+            
+            
                     <div class= "col-sm">@Model.CityName.CountryName.CountryName</div>
                     
-                
                     <div class= "col-sm">  
                         <form asp-action="Info" method="post">
                             <input type="hidden"  value="@Model.PersonId" name="id"/>
@@ -30,5 +32,7 @@
                             <button type="submit" class= "btn btn-outline-danger">Delete </button>
                         </form>                  
                     </div>
+                   
+                    
                 </div>
                     

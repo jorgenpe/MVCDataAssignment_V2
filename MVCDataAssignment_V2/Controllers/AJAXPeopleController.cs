@@ -15,7 +15,7 @@ namespace MVCDataAssignment_V2.Controllers
 
         public AJAXPeopleController(IPeopleService peopleService, ICityService cityService)
         {
-            this._peopleService = peopleService;
+            _peopleService = peopleService;
             _cityService = cityService;
         }
 
